@@ -1,0 +1,6 @@
+transports:
+  async: '%env(MESSENGER_TRANSPORT_DSN)%'
+    retry_strategy:
+      max_retries: 4
+      delay: 21600000000
+      multiplier: 4

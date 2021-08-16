@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}Upload CSV{% endblock %}</title>
+    {% block stylesheets %}
+        <link href="{{ asset('css/upload.css') }}" rel="stylesheet"/>
+    {% endblock %}
+    <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+</head>
+<body>
+
+<form id="chooseFile">
+    <input type="file" id="file" name="filename">
+    <input type="submit">
+</form>
+
+<script src="{{ asset('js/upload.js') }}"></script>
+</body>
+</html>

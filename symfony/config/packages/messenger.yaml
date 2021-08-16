@@ -1,0 +1,20 @@
+framework:
+    messenger:
+        # Uncomment this (and the failed transport below) to send failed messages to this transport for later handling.
+        # failure_transport: failed
+
+        transports:
+            # https://symfony.com/doc/current/messenger.html#transport-configuration
+             async:
+                 dsn: '%env(MESSENGER_TRANSPORT_DSN)%'
+                 retry_strategy:
+                     service: null
+                     max_retries: 5
+                     delay: 3600000000 #1hour
+                     multiplier: 4 #total: 32hour time-frame
+            # sync: 'sync://'
+
+        routing:
+            # Route your messages to the transports
+             'App\Service\Image\Message\Event\PictureUrlUpdatedEvent': async
+             'App\Service\Image\Message\Event\PicturePreviewDownloadedEvent': async
