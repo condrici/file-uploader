@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+docker-compose down
+docker-compose up -d --build
+docker-compose exec php sh -c "COMPOSER_MEMORY_LIMIT=-1 composer install --no-suggest --no-interaction --optimize-autoloader -v"
+docker-compose exec php sh -c "bin/console doctrine:migrations:migrate --no-interaction"
+docker-compose exec php sh -c "bin/console cache:clear"
+docker-compose exec php sh -c "bin/console messenger:consume -vv"
